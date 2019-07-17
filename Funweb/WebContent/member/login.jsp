@@ -7,21 +7,29 @@
 <title>Insert title here</title>
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
-<!--[if lt IE 9]>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" type="text/javascript"></script>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/ie7-squish.js" type="text/javascript"></script>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-<![endif]-->
-<!--[if IE 6]>
- <script src="../script/DD_belatedPNG_0.0.8a.js"></script>
- <script>
-   /* EXAMPLE */
-   DD_belatedPNG.fix('#wrap');
-   DD_belatedPNG.fix('#main_img');   
 
- </script>
- <![endif]-->
- <script src="../script/jquery-3.4.1.js"></script>
+<script src="../script/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('#join').submit(function(){
+			if($('#id').val()==""){
+				alert("아이디를 입력하세요");
+				$('#id').focus();
+				return false;
+			}
+			
+			if($('#pass').val()==""){
+				alert("비밀번호를 입력하세요.");
+				$('#pass').focus();
+				return false;
+			}
+			
+		});
+		
+	});
+	</script>
+
  <script type="text/javascript">
  
  </script>
@@ -51,9 +59,9 @@
 <fieldset>
 <legend>Login Info</legend>
 <label>User ID</label>
-<input type="text" name="id"><br>
+<input type="text" name="id" id='id'><br>
 <label>Password</label>
-<input type="password" name="pass"><br>
+<input type="password" name="pass" id='pass'><br>
 </fieldset>
 <div class="clear"></div>
 <div id="buttons">
