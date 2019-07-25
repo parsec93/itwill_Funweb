@@ -7,7 +7,21 @@
 <title>Insert title here</title>
 <link href="../css/default.css" rel="stylesheet" type="text/css">
 <link href="../css/subpage.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" type="text/javascript"></script>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/ie7-squish.js" type="text/javascript"></script>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+<![endif]-->
+<!--[if IE 6]>
+ <script src="../script/DD_belatedPNG_0.0.8a.js"></script>
+ <script>
+   /* EXAMPLE */
+   DD_belatedPNG.fix('#wrap');
+   DD_belatedPNG.fix('#main_img');   
+
+ </script>
+ <![endif]-->
+ <script type="text/javascript">
  function idcheck() {
 	// id 텍스트 상자가 비어있으면  "아이디입력" 제어
 	fid=document.fr.id.value;
@@ -49,8 +63,24 @@
 	 			  return false;
 			}
  	   });
+ 	   
+ 	   // 아이디 중복체크
+ 	   $('.dup').click(function() {
+ 		  if($('#id').val()==""){
+			   alert("아이디입력하세요");
+			  $('#id').focus();
+			  return false;
+		   }
+ 		  $.ajax('idcheck2.jsp',{
+ 			 data:{fid:$('#id').val()},
+			 success : function(data) {
+					$('#idc').html(data);
+			 }
+ 		  });
+		});
 	});
  </script>
+ 
 </head>
 <body>
 <div id="wrap">
@@ -77,23 +107,25 @@
 <fieldset>
 <legend>Basic Info</legend>
 <label>User ID</label>
-<input type="text" name="id" class="id" id='id'>
-<input type="button" value="dup. check" class="dup"
-onclick="idcheck()"><br>
+<input type="text" name="id" class="id" id="id">
+<!-- <input type="button" value="dup. check" class="dup" -->
+<!--  onclick="idcheck()"><br> -->
+<input type="button" value="dup. check" class="dup"><div id="idc"></div><br> 
 <label>Password</label>
-<input type="password" name="pass"><br>
+<input type="password" name="pass" id="pass"><br>
 <label>Retype Password</label>
-<input type="password" name="pass2"><br>
+<input type="password" name="pass2" id="pass2"><br>
 <label>Name</label>
-<input type="text" name="name"><br>
+<input type="text" name="name" id="name"><br>
 <label>E-Mail</label>
-<input type="email" name="email"><br>
+<input type="email" name="email" id="email"><br>
 <label>Retype E-Mail</label>
-<input type="email" name="email2"><br>
+<input type="email" name="email2" id="email2"><br>
 </fieldset>
 
 <fieldset>
 <legend>Optional</legend>
+<label>Gender</label>
 <input type="radio" name="gender" id="gender_man" value="남">남
 <input type="radio" name="gender" id="gender_woman" value="여">여<br>
 <label>연령</label>
@@ -103,11 +135,11 @@ onclick="idcheck()"><br>
 	<option value="20대">20대</option>
 </select><br>
 <label>Address</label>
-<input type="text" name="address"><br>
+<input type="text" name="address" id="address"><br>
 <label>Phone Number</label>
-<input type="text" name="phone"><br>
+<input type="text" name="phone" id="phone"><br>
 <label>Mobile Phone Number</label>
-<input type="text" name="mobile"><br>
+<input type="text" name="mobile" id="mobile"><br>
 </fieldset>
 <div class="clear"></div>
 <div id="buttons">
